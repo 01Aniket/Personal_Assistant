@@ -11,7 +11,7 @@ import smtplib
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
-engine.setProperty('voice', voices[0].id)
+engine.setProperty('voice', voices[1].id)
 
 import wolframalpha
 try:
@@ -37,7 +37,7 @@ def wishMe():
     else:
         speak("Good Evening!")  
 
-    speak("I am Jarvis Sir. Please tell me how may I help you")       
+    speak("I am Edith Sir. Please tell me how may I help you")       
 #to convert voice into text
 def takeCommand():
     #It takes microphone input from the user and returns string output

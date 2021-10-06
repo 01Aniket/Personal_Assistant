@@ -7,7 +7,6 @@ import os
 import pywhatkit as kit
 import smtplib
 
-
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
@@ -37,7 +36,7 @@ def wishMe():
     else:
         speak("Good Evening!")  
 
-    speak("I am Edith Sir. Please tell me how may I help you")       
+    speak("I am Jarvis Sir. Please tell me how may I help you")       
 #to convert voice into text
 def takeCommand():
     #It takes microphone input from the user and returns string output
@@ -55,6 +54,7 @@ def takeCommand():
 
     except Exception as e:
         # print(e)    
+
         print("Say that again please...")  
         return "None"
     return query

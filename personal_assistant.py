@@ -4,14 +4,23 @@ import datetime
 import wikipedia #pip install wikipedia
 import webbrowser
 import os
+import pywhatkit as kit
 import smtplib
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
 engine.setProperty('voice', voices[0].id)
 
+import wolframalpha
+try:
+    app=wolframalpha.Client("Y252WT-6RVG8JXPYR")
+except Exception:
+    print("Check your connection")
 
+
+#text to speech
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -29,7 +38,7 @@ def wishMe():
         speak("Good Evening!")  
 
     speak("I am Jarvis Sir. Please tell me how may I help you")       
-
+#to convert voice into text
 def takeCommand():
     #It takes microphone input from the user and returns string output
 
@@ -74,10 +83,12 @@ if __name__ == "__main__":
             speak(results)
 
         elif 'open youtube' in query:
-            webbrowser.open("youtube.com")
+            webbrowser.open("www.youtube.com")
 
         elif 'open google' in query:
-            webbrowser.open("google.com")
+            speak("What Should I Search")
+            search=takeCommand().lower()
+            webbrowser.open(f"{search}")
 
         elif 'open stackoverflow' in query:
             webbrowser.open("stackoverflow.com")   
@@ -93,10 +104,22 @@ if __name__ == "__main__":
             codePath = "C:\\Users\\Asus\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
         
-        elif 'ok stop' in query:
+        elif 'weather' in query:
+            try:
+                res=app.query(query)
+                print(next(res.results).text)
+                speak(next(res.results).text)
+            except:
+                speak("Check Your Connection Sir!")
+        
+        
+        
+        elif 'stop' in query:
             speak("Thanks for having me sir!")
             speak("Have a Good Day!!")
             exit()
+        
+        speak("Sir! do you have any other work")
 
 
         '''elif 'email to harry' in query:
